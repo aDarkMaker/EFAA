@@ -63,7 +63,7 @@ async function run() {
   try {
     log.yellow('Resetting staging area...');
     try {
-    //   execSync('git reset');
+      execSync('git reset');
     } catch (e) {}
 
     let files = await getChangedFiles();

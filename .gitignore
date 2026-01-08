@@ -25,6 +25,7 @@ ok/
 *.cpp
 *.pyx
 *.so
+*.bat
 .vscode/
 **/__pycache__/
 # Distribution / packaging

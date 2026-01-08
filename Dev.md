@@ -19,16 +19,3 @@ uv venv .venv
 bash .venv/source/activate.sh
 
 uv pip install -r requirements.txt
-
-# Frontend
-cd frontend
-bun install
-```
-
-## 运行项目
-
-```bash
-# 开发模式
-bun --cwd frontend dev
-python main.py
-```

@@ -29,10 +29,10 @@ for /f "tokens=1,2*" %%a in (%TEMP_FILES%) do (
         echo --------------------------------
         echo 文件路径: !file!
         
-        echo [1] 提交此文件
-        echo [2] 提交同级目录
-        echo [3] 跳过
-        echo [4] 退出程序
+        echo [1] "提交此文件"
+        echo [2] "提交同级目录"
+        echo [3] "跳过"
+        echo [4] "退出程序"
         set /p action="选择操作 (1-4): "
 
         if "!action!"=="4" goto :end
@@ -40,9 +40,9 @@ for /f "tokens=1,2*" %%a in (%TEMP_FILES%) do (
         
         echo.
         echo 选择模块类型:
-        echo [1] 后端引擎 [2] 前端开发 [3] 视觉算法
-        echo [4] 业务任务 [5] 资源配置 [6] 文档更新
-        echo [7] 故障修复
+        echo [1] "后端引擎" [2] "前端开发" [3] "视觉算法"
+        echo [4] "业务任务" [5] "资源配置" [6] "文档更新"
+        echo [7] "故障修复"
         set /p type_idx="选择类型 (1-7): "
 
         if "!type_idx!"=="1" set "module=后端引擎"

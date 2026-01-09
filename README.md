@@ -34,6 +34,6 @@
 
 ## 3. 下载方式
 
-- **[GitHub](https://github.com/ok-oldking/ok-wuthering-waves/releases)**: 侧边下载即可，暂未支持其他渠道~
+- **[GitHub](https://github.com/aDarkMaker/EFAA/releases)**: 侧边下载即可，暂未支持其他渠道~
 
 ## 4. 功能介绍

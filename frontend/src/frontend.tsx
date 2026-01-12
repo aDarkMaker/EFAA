@@ -1,13 +1,12 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { SideBar } from './components/SideBar';
 import './styles/global.css';
 
 function App() {
 	return (
 		<div className="app">
-			<div className="logo-container">
-				<h1>EFAA</h1>
-			</div>
+			<SideBar />
 		</div>
 	);
 }

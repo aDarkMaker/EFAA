@@ -5,7 +5,6 @@ update/
 tesseract
 cache/
 models
-fonts
 # Byte-compiled / optimized / DLL files
 .idea/
 __pycache__/

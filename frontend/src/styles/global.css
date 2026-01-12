@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'EndField';
+    src: url('@/assets/fonts/fonts.ttf') format('truetype');
+}
+
+:root {
+    font-family: 'EndField', sans-serif;
+}

@@ -1,0 +1,48 @@
+[project]
+name = "efaa"
+version = "0.1.0"
+description = "MAA在塔卫二时期的再旅者……"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "bottle==0.13.4",
+    "certifi==2026.1.4",
+    "cffi==2.0.0",
+    "charset-normalizer==3.4.4",
+    "clr-loader==0.2.10",
+    "comtypes==1.4.14",
+    "darkdetect==0.8.0",
+    "greenlet==3.3.0",
+    "idna==3.11",
+    "mouse==0.7.1",
+    "numpy==2.3.5",
+    "ok-script==1.0.23",
+    "onnxocr-ppocrv4==0.0.5",
+    "openvino==2025.4.1",
+    "openvino-telemetry==2025.2.0",
+    "packaging==25.0",
+    "pillow==12.1.0",
+    "pip==25.3",
+    "playwright==1.57.0",
+    "proxy-tools==0.1.0",
+    "psutil==7.2.1",
+    "pyappify==1.0.2",
+    "pycaw==20240210",
+    "pyclipper==1.4.0",
+    "pycparser==2.23",
+    "pydirectinput==1.0.4",
+    "pyee==13.0.0",
+    "pyside6==6.10.1",
+    "pyside6-addons==6.10.1",
+    "pyside6-essentials==6.10.1",
+    "pyside6-fluent-widgets==1.8.3",
+    "pysidesix-frameless-window==0.7.5",
+    "pythonnet==3.0.5",
+    "pywebview==6.1",
+    "pywin32==311",
+    "requests==2.32.5",
+    "shapely==2.1.2",
+    "shiboken6==6.10.1",
+    "typing-extensions==4.15.0",
+    "urllib3==2.6.3",
+]

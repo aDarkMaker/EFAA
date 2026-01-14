@@ -2,7 +2,6 @@
   <img src="./public/icon.png" width="160" alt="efaa logo" />
 
   # EFAA (开发ing……)
-  [![Developed with ok-script](https://img.shields.io/badge/Developed%20with-ok--script-orange?style=for-the-badge)](https://github.com/ok-oldking/ok-script)
   ![Platform](https://img.shields.io/badge/platform-Windows-blue?style=for-the-badge)
   ![Python](https://img.shields.io/badge/python-3.12-blue?style=for-the-badge&logo=python&logoColor=white)
 

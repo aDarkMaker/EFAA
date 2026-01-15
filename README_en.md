@@ -37,3 +37,15 @@
 - **[GitHub](https://github.com/ok-oldking/ok-wuthering-waves/releases)**: Download from the sidebar; other channels are not yet supported.
 
 ## 4. Features
+
+- **System Requirements**:
+  - ADB support
+  - MuMu Player recommended
+  - Configuration: 1920 x 1080, 280 DPI
+- **Supported Features**:
+  - The Tijiang base resource collection
+  - Daily recovery of unlocked resource points on the map
+  - Collection of unlocked precious resources on the map
+  - Stamina consumption for high-difficulty silt points / daily resource instances
+  - Daily store trust collection + material exchange
+  - Colony daily resource exchange + automated stock trading

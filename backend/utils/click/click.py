@@ -1,14 +1,37 @@
 import subprocess
-import time
+import os
+import json
 
-def click(x, y, duration=0.2, device_id=None):
+def load_keyboard_mapping():
+    config_path = os.path.join(os.path.dirname(__file__), "config.json")
+    try:
+        with open(config_path, "r", encoding="utf-8") as f:
+            config = json.load(f)
+            return config.get("keyboard_mapping", {})
+    except Exception:
+        return {}
+
+def click(x_or_key, y=None, duration=0.2, device_id=None):
+    if isinstance(x_or_key, str):
+        mapping = load_keyboard_mapping()
+        coord_str = mapping.get(x_or_key)
+        if not coord_str:
+            return False
+        try:
+            x, y = map(int, coord_str.split(','))
+        except ValueError:
+            return False
+    else:
+        x = x_or_key
+    
+    if x is None or y is None:
+        return False
 
     cmd = ["adb"]
     if device_id:
         cmd.extend(["-s", device_id])
     
     duration_ms = int(duration * 1000)
-    
     if duration_ms <= 0:
         cmd.extend(["shell", "input", "tap", str(x), str(y)])
     else:

@@ -66,18 +66,3 @@ def ocr(target_text, device=None):
         print("[OCR Error] Failed to get screenshot")
         return None
     return find_text_in_image(img, target_text)
-
-def test_local_image(image_path, text_to_find):
-    img = cv2.imread(image_path)
-    result = find_text_in_image(img, text_to_find)
-    print(f"Finding: '{text_to_find}': {result}")
-
-    if result:
-        cv2.rectangle(img, (int(result[0]), int(result[1])), (int(result[2]), int(result[3])), (0, 0, 255), 2)
-        cv2.namedWindow("OCR_Test", cv2.WINDOW_NORMAL)
-        cv2.imshow("OCR_Test", img)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
-
-if __name__ == "__main__":
-    test_local_image("test.png", "登录")

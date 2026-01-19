@@ -36,12 +36,42 @@
 
 **签名**：`click(x_or_key, y=None, duration=0.2, device_id=None) -> bool`
 
-| 参数 | 类型 | 默认值 | 说明 |
-|---|---|---:|---|
-| `x_or_key` | `Union[int, str]` | - | 传 `int` 表示 X 坐标；传 `str` 表示从 `config.json` 的 `keyboard_mapping` 里取坐标（如 `"shop"`）。 |
-| `y` | `Optional[int]` | `None` | Y 坐标；当 `x_or_key` 为键名时忽略。 |
-| `duration` | `float` | `0.2` | 点击时长（秒）。`<= 0` 时使用 `tap`；否则用 `swipe` 模拟按压时长。 |
-| `device_id` | `Optional[str]` | `None` | 目标设备 ID（等价于 `adb -s <device_id>`）。 |
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th>类型</th>
+      <th align="right">默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>x_or_key</code></td>
+      <td><code>Union[int, str]</code></td>
+      <td align="right">-</td>
+      <td>传 <code>int</code> 表示 X 坐标；传 <code>str</code> 表示从 <code>config.json</code> 里取坐标（如 <code>"shop"</code>）。</td>
+    </tr>
+    <tr>
+      <td><code>y</code></td>
+      <td><code>Optional[int]</code></td>
+      <td align="right"><code>None</code></td>
+      <td>Y 坐标；当 <code>x_or_key</code> 为键名时忽略。</td>
+    </tr>
+    <tr>
+      <td><code>duration</code></td>
+      <td><code>float</code></td>
+      <td align="right"><code>0.2</code></td>
+      <td>点击时长（秒）。<code>&lt;= 0</code> 时使用 <code>tap</code>；否则用 <code>swipe</code> 模拟按压时长。</td>
+    </tr>
+    <tr>
+      <td><code>device_id</code></td>
+      <td><code>Optional[str]</code></td>
+      <td align="right"><code>None</code></td>
+      <td>目标设备 ID（等价于 <code>adb -s &lt;device_id&gt;</code>）。</td>
+    </tr>
+  </tbody>
+</table>
 
 **配置（`utils/click/config.json`）**：键名到坐标的映射，坐标以 `"x,y"` 字符串保存。
 
@@ -74,13 +104,48 @@ click("Attack", duration=0.5, device_id="emulator-5554")
 
 **签名**：`click_text(target, duration=0.2, device_id=None, is_icon=False, threshold=0.7) -> bool`
 
-| 参数 | 类型 | 默认值 | 说明 |
-|---|---|---:|---|
-| `target` | `str` | - | 文字内容（`is_icon=False`）或图标名（`is_icon=True`，不带后缀）。 |
-| `duration` | `float` | `0.2` | 点击时长（秒），同 `click`。 |
-| `device_id` | `Optional[str]` | `None` | 目标设备 ID。 |
-| `is_icon` | `bool` | `False` | `False` 使用 OCR 文本定位；`True` 使用图标模板匹配。 |
-| `threshold` | `float` | `0.7` | 置信度阈值；图标模式下会传给 `find_icon`。 |
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th>类型</th>
+      <th align="right">默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>target</code></td>
+      <td><code>str</code></td>
+      <td align="right">-</td>
+      <td>文字内容（<code>is_icon=False</code>）或图标名（<code>is_icon=True</code>，不带后缀）。</td>
+    </tr>
+    <tr>
+      <td><code>duration</code></td>
+      <td><code>float</code></td>
+      <td align="right"><code>0.2</code></td>
+      <td>点击时长（秒），同 <code>click</code>。</td>
+    </tr>
+    <tr>
+      <td><code>device_id</code></td>
+      <td><code>Optional[str]</code></td>
+      <td align="right"><code>None</code></td>
+      <td>目标设备 ID。</td>
+    </tr>
+    <tr>
+      <td><code>is_icon</code></td>
+      <td><code>bool</code></td>
+      <td align="right"><code>False</code></td>
+      <td><code>False</code> 使用 OCR 文本定位；<code>True</code> 使用图标模板匹配。</td>
+    </tr>
+    <tr>
+      <td><code>threshold</code></td>
+      <td><code>float</code></td>
+      <td align="right"><code>0.7</code></td>
+      <td>置信度阈值；图标模式下会传给 <code>find_icon</code>。</td>
+    </tr>
+  </tbody>
+</table>
 
 **返回**：找到并点击成功返回 `True`；未找到或点击失败返回 `False`。
 
@@ -106,10 +171,30 @@ click_text("logout", is_icon=True, threshold=0.9)
 
 **签名**：`ocr(target_text, device=None) -> list[int] | None`
 
-| 参数 | 类型 | 默认值 | 说明 |
-|---|---|---:|---|
-| `target_text` | `str` | - | 目标文本（**子串匹配**：只要 `target_text in text` 即命中）。 |
-| `device` | `Optional[str]` | `None` | 目标设备 ID（注意：此处参数名为 `device`）。 |
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th>类型</th>
+      <th align="right">默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>target_text</code></td>
+      <td><code>str</code></td>
+      <td align="right">-</td>
+      <td>目标文本（<strong>子串匹配</strong>：只要 <code>target_text in text</code> 即命中）。</td>
+    </tr>
+    <tr>
+      <td><code>device</code></td>
+      <td><code>Optional[str]</code></td>
+      <td align="right"><code>None</code></td>
+      <td>目标设备 ID（注意：此处参数名为 <code>device</code>）。</td>
+    </tr>
+  </tbody>
+</table>
 
 **返回**：找到返回 `[x1, y1, x2, y2]`；未找到返回 `None`。
 
@@ -132,11 +217,36 @@ print(box)  # e.g. [123, 456, 234, 488] 或 None
 
 **签名**：`find_icon(icon_name, threshold=0.9, device_id=None) -> list[list[int]]`
 
-| 参数 | 类型 | 默认值 | 说明 |
-|---|---|---:|---|
-| `icon_name` | `str` | - | 图标文件名（不含后缀，如 `"logout"`）。 |
-| `threshold` | `float` | `0.9` | 匹配阈值，越大越严格。 |
-| `device_id` | `Optional[str]` | `None` | 目标设备 ID。 |
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th>类型</th>
+      <th align="right">默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>icon_name</code></td>
+      <td><code>str</code></td>
+      <td align="right">-</td>
+      <td>图标文件名（不含后缀，如 <code>"logout"</code>）。</td>
+    </tr>
+    <tr>
+      <td><code>threshold</code></td>
+      <td><code>float</code></td>
+      <td align="right"><code>0.9</code></td>
+      <td>匹配阈值，越大越严格。</td>
+    </tr>
+    <tr>
+      <td><code>device_id</code></td>
+      <td><code>Optional[str]</code></td>
+      <td align="right"><code>None</code></td>
+      <td>目标设备 ID。</td>
+    </tr>
+  </tbody>
+</table>
 
 **资源存放**：`backend/utils/ocr/icons/`，支持 `.png` / `.jpg` / `.jpeg`（会按该顺序尝试）。
 
@@ -162,10 +272,30 @@ if boxes:
 
 **签名**：`keyevent(code, device_id=None) -> bool`
 
-| 参数 | 类型 | 默认值 | 说明 |
-|---|---|---:|---|
-| `code` | `Union[int, str]` | - | Keycode 数字，或常用别名：`"space"`, `"esc"`, `"back"`, `"enter"`（大小写不敏感）。 |
-| `device_id` | `Optional[str]` | `None` | 目标设备 ID。 |
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th>类型</th>
+      <th align="right">默认值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>code</code></td>
+      <td><code>Union[int, str]</code></td>
+      <td align="right">-</td>
+      <td>Keycode 数字，或常用别名：<code>"space"</code>, <code>"esc"</code>, <code>"back"</code>, <code>"enter"</code>（大小写不敏感）。</td>
+    </tr>
+    <tr>
+      <td><code>device_id</code></td>
+      <td><code>Optional[str]</code></td>
+      <td align="right"><code>None</code></td>
+      <td>目标设备 ID。</td>
+    </tr>
+  </tbody>
+</table>
 
 **示例**：
 

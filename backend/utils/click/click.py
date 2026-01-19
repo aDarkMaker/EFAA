@@ -43,14 +43,20 @@ def click(x_or_key, y=None, duration=0.2, device_id=None):
     except Exception:
         return False
 
-def click_text(target, duration=0.2, device_id=None):
-    from utils.ocr.ocr import ocr
+def click_text(target, duration=0.2, device_id=None, is_icon=False, threshold=0.7):
+    if is_icon:
+        from utils.ocr.ocr_icon import find_icon
+        res_list = find_icon(target, threshold=threshold, device_id=device_id)
+        res = res_list[0] if res_list else None
+    else:
+        from utils.ocr.ocr import ocr
+        res = ocr(target, device=device_id)
     
-    res = ocr(target, device=device_id)
     if res:
         cx = (res[0] + res[2]) // 2
         cy = (res[1] + res[3]) // 2
-        print(f"[Click] Found '{target}' at ({cx}, {cy}), clicking...")
+        print(f"[Click] Found {'icon' if is_icon else 'text'} '{target}' at ({cx}, {cy}), clicking...")
         return click(cx, cy, duration=duration, device_id=device_id)
-    print(f"[Click] Text '{target}' not found")
+    
+    print(f"[Click] {'Icon' if is_icon else 'Text'} '{target}' not found")
     return False

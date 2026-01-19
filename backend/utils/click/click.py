@@ -42,3 +42,15 @@ def click(x_or_key, y=None, duration=0.2, device_id=None):
         return True
     except Exception:
         return False
+
+def click_text(target, duration=0.2, device_id=None):
+    from utils.ocr.ocr import ocr
+    
+    res = ocr(target, device=device_id)
+    if res:
+        cx = (res[0] + res[2]) // 2
+        cy = (res[1] + res[3]) // 2
+        print(f"[Click] Found '{target}' at ({cx}, {cy}), clicking...")
+        return click(cx, cy, duration=duration, device_id=device_id)
+    print(f"[Click] Text '{target}' not found")
+    return False

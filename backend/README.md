@@ -38,10 +38,10 @@
 
 | 参数 | 类型 | 默认值 | 说明 |
 |---|---|---:|---|
-| `x_or_key` | `int \| str` | - | 传 `int` 表示 X 坐标；传 `str` 表示从 `config.json` 的 `keyboard_mapping` 里取坐标（如 `"shop"`）。 |
-| `y` | `int \| N` | `None` | Y 坐标；当 `x_or_key` 为键名时忽略。 |
+| `x_or_key` | `Union[int, str]` | - | 传 `int` 表示 X 坐标；传 `str` 表示从 `config.json` 的 `keyboard_mapping` 里取坐标（如 `"shop"`）。 |
+| `y` | `Optional[int]` | `None` | Y 坐标；当 `x_or_key` 为键名时忽略。 |
 | `duration` | `float` | `0.2` | 点击时长（秒）。`<= 0` 时使用 `tap`；否则用 `swipe` 模拟按压时长。 |
-| `device_id` | `str \| N` | `None` | 目标设备 ID（等价于 `adb -s <device_id>`）。 |
+| `device_id` | `Optional[str]` | `None` | 目标设备 ID（等价于 `adb -s <device_id>`）。 |
 
 **配置（`utils/click/config.json`）**：键名到坐标的映射，坐标以 `"x,y"` 字符串保存。
 
@@ -78,7 +78,7 @@ click("Attack", duration=0.5, device_id="emulator-5554")
 |---|---|---:|---|
 | `target` | `str` | - | 文字内容（`is_icon=False`）或图标名（`is_icon=True`，不带后缀）。 |
 | `duration` | `float` | `0.2` | 点击时长（秒），同 `click`。 |
-| `device_id` | `str \| None` | `None` | 目标设备 ID。 |
+| `device_id` | `Optional[str]` | `None` | 目标设备 ID。 |
 | `is_icon` | `bool` | `False` | `False` 使用 OCR 文本定位；`True` 使用图标模板匹配。 |
 | `threshold` | `float` | `0.7` | 置信度阈值；图标模式下会传给 `find_icon`。 |
 
@@ -109,7 +109,7 @@ click_text("logout", is_icon=True, threshold=0.9)
 | 参数 | 类型 | 默认值 | 说明 |
 |---|---|---:|---|
 | `target_text` | `str` | - | 目标文本（**子串匹配**：只要 `target_text in text` 即命中）。 |
-| `device` | `str \| None` | `None` | 目标设备 ID（注意：此处参数名为 `device`）。 |
+| `device` | `Optional[str]` | `None` | 目标设备 ID（注意：此处参数名为 `device`）。 |
 
 **返回**：找到返回 `[x1, y1, x2, y2]`；未找到返回 `None`。
 
@@ -136,7 +136,7 @@ print(box)  # e.g. [123, 456, 234, 488] 或 None
 |---|---|---:|---|
 | `icon_name` | `str` | - | 图标文件名（不含后缀，如 `"logout"`）。 |
 | `threshold` | `float` | `0.9` | 匹配阈值，越大越严格。 |
-| `device_id` | `str \| None` | `None` | 目标设备 ID。 |
+| `device_id` | `Optional[str]` | `None` | 目标设备 ID。 |
 
 **资源存放**：`backend/utils/ocr/icons/`，支持 `.png` / `.jpg` / `.jpeg`（会按该顺序尝试）。
 
@@ -164,8 +164,8 @@ if boxes:
 
 | 参数 | 类型 | 默认值 | 说明 |
 |---|---|---:|---|
-| `code` | `int \| str` | - | Keycode 数字，或常用别名：`"space"`, `"esc"`, `"back"`, `"enter"`（大小写不敏感）。 |
-| `device_id` | `str \| None` | `None` | 目标设备 ID。 |
+| `code` | `Union[int, str]` | - | Keycode 数字，或常用别名：`"space"`, `"esc"`, `"back"`, `"enter"`（大小写不敏感）。 |
+| `device_id` | `Optional[str]` | `None` | 目标设备 ID。 |
 
 **示例**：
 

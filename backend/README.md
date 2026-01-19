@@ -39,9 +39,9 @@
 | 参数 | 类型 | 默认值 | 说明 |
 |---|---|---:|---|
 | `x_or_key` | `int \| str` | - | 传 `int` 表示 X 坐标；传 `str` 表示从 `config.json` 的 `keyboard_mapping` 里取坐标（如 `"shop"`）。 |
-| `y` | `int \| None` | `None` | Y 坐标；当 `x_or_key` 为键名时忽略。 |
+| `y` | `int \| N` | `None` | Y 坐标；当 `x_or_key` 为键名时忽略。 |
 | `duration` | `float` | `0.2` | 点击时长（秒）。`<= 0` 时使用 `tap`；否则用 `swipe` 模拟按压时长。 |
-| `device_id` | `str \| None` | `None` | 目标设备 ID（等价于 `adb -s <device_id>`）。 |
+| `device_id` | `str \| N` | `None` | 目标设备 ID（等价于 `adb -s <device_id>`）。 |
 
 **配置（`utils/click/config.json`）**：键名到坐标的映射，坐标以 `"x,y"` 字符串保存。
 

@@ -4,19 +4,29 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "bun --hot src/index.ts",
+		"dev": "bun --hot src/build.ts",
 		"build": "bun build ./src/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
-		"start": "NODE_ENV=production bun src/index.ts"
+		"start": "NODE_ENV=production bun src/build.ts"
 	},
 	"dependencies": {
+		"@headlessui/react": "^2.2.9",
+		"clsx": "^2.1.1",
 		"cspell": "^9.4.0",
 		"prettier": "^3.7.4",
 		"react": "^19",
-		"react-dom": "^19"
+		"react-dom": "^19",
+		"react-router-dom": "^7.12.0",
+		"remixicon": "^4.8.0"
 	},
 	"devDependencies": {
+		"@tailwindcss/vite": "^4.1.18",
+		"@types/bun": "latest",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
-		"@types/bun": "latest"
+		"eslint": "^9.39.2",
+		"eslint-plugin-simple-import-sort": "^12.1.1",
+		"neostandard": "^0.12.2",
+		"tailwindcss": "^4.1.18",
+		"vite": "^7.3.1"
 	}
 }

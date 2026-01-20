@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+/* Font Definitions */
+@font-face {
+  font-family: 'MiSans-Regular';
+  src: url('https://assets-persist.lovart.ai/agent-static-assets/MiSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'MiSans-Bold';
+  src: url('https://assets-persist.lovart.ai/agent-static-assets/MiSans-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Alibaba-PuHuiTi-Bold';
+  src: url('https://assets-persist.lovart.ai/agent-static-assets/Alibaba-PuHuiTi-Bold.otf');
+}
+
+@theme {
+  /* 背景色 */
+  --color-bg-main: #121212;        /* 主背景 */
+  --color-bg-card: #1E1E1E;        /* 卡片背景 */
+  --color-bg-sidebar: #1A1A1A;     /* 侧边栏背景 */
+  
+  /* 文本色 */
+  --color-text-main: #FFFFFF;       /* 主文本 */
+  --color-text-gray: #A0A0A0;       /* 次要文本 */
+  --color-text-reverse: #000000;       /* 反色文本 */
+  
+  /* 强调色 */
+  --color-accent: #FEFA53;         /* 强调黄色 */
+  
+  /* 边框色 */
+  --color-border: #333333;            /* 边框 */
+
+  --font-remixicon: 'remixicon', sans-serif;
+}
+
+/* Global Styles */
+body {
+  font-family: 'MiSans-Regular', sans-serif;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+}
+
+/* Custom Scrollbar for Task Container */
+.task-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.task-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.task-container::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+.task-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -67,7 +67,7 @@ def handle_cultivation_cabin(device_id):
             time.sleep(1)
 
 def run_tijiang_task(device_id="127.0.0.1:7555"):
-    print("[Task] Starting Tijiang task...")
+    print("[基建收菜] 任务开始")
     connect_to_emulator(device_id)
 
     tijiang_icons = find_icon("Tijiang", device_id=device_id)

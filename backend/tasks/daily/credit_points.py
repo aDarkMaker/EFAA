@@ -10,7 +10,7 @@ from utils.click.click import click, click_text
 from utils.keyboard.keyboard import keyevent
 
 def run_task(device_id="127.0.0.1:7555"):
-    print("[Task] Starting Credit Points task...")
+    print("[领取商城信用点] 任务开始")
     
     if click("shop", device_id=device_id):
         time.sleep(0.2)
@@ -26,10 +26,10 @@ def run_task(device_id="127.0.0.1:7555"):
 
         keyevent("esc", device_id=device_id)
 
-        print("[Task] Credit Points task completed.")
+        print("[领取商城信用点] 任务完成")
 
     else:
-        print("[Task] Failed to do '收取信用'")
+        print("[领取商城信用点] 出了点错误")
 
 if __name__ == "__main__":
     run_task()

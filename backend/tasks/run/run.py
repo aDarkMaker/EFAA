@@ -30,7 +30,7 @@ def run_task(device_id="127.0.0.1:7555"):
         
         time.sleep(2)
 
-    print("[一键唤醒] 任务完成.")
+    print("[一键唤醒] 任务完成")
 
 if __name__ == "__main__":
     run_task()

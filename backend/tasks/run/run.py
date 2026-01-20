@@ -11,7 +11,7 @@ from utils.ocr.ocr import ocr
 from utils.click.click import click
 
 def run_task(device_id="127.0.0.1:7555"):
-
+    print("[一键唤醒] 任务开始")
     connect_to_emulator(device_id)
     
     package_name = "com.hypergryph.endfield"

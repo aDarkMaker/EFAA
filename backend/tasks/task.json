@@ -10,5 +10,9 @@
     "credit_shop": {
         "name": "信用点购物",
         "default": false
+    },
+    "tijiang": {
+        "name": "基建收菜",
+        "default": true
     }
 }

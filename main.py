@@ -2,7 +2,7 @@ import webview  # pyright: ignore[reportMissingImports]
 import threading
 import os
 
-DEV_URL = "http://localhost:3000"
+DEV_URL = "http://localhost:5173"
 
 class Api:
     def close_window(self):

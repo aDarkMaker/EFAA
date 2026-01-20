@@ -1,19 +1,11 @@
 @import "tailwindcss";
 
-/* Font Definitions */
 @font-face {
-  font-family: 'MiSans-Regular';
-  src: url('https://assets-persist.lovart.ai/agent-static-assets/MiSans-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'MiSans-Bold';
-  src: url('https://assets-persist.lovart.ai/agent-static-assets/MiSans-Bold.ttf');
-}
-
-@font-face {
-  font-family: 'Alibaba-PuHuiTi-Bold';
-  src: url('https://assets-persist.lovart.ai/agent-static-assets/Alibaba-PuHuiTi-Bold.otf');
+  font-family: 'ZhihuiWuwaiRFHuiti';
+  src: url('../assets/fonts/zhihuiwuwairfhuiti.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @theme {
@@ -38,26 +30,32 @@
 
 /* Global Styles */
 body {
-  font-family: 'MiSans-Regular', sans-serif;
+  font-family: 'ZhihuiWuwaiRFHuiti', sans-serif;
   background-color: var(--color-bg-main);
   color: var(--color-text-main);
 }
 
-/* Custom Scrollbar for Task Container */
-.task-container::-webkit-scrollbar {
-  width: 8px;
+* {
+  font-family: 'ZhihuiWuwaiRFHuiti', sans-serif;
 }
 
-.task-container::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-}
+/* Custom Scrollbar Utility */
+@layer utilities {
+  .scrollbar-thin-dark::-webkit-scrollbar {
+    width: 8px;
+  }
 
-.task-container::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
-}
+  .scrollbar-thin-dark::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+  }
 
-.task-container::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  .scrollbar-thin-dark::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+  }
+
+  .scrollbar-thin-dark::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 }

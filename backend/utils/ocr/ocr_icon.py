@@ -62,7 +62,7 @@ def find_all_images_in_image(img, template_path, threshold=0.7):
 
     return final_boxes
 
-def find_icon(icon_name, threshold=0.9, device_id=None):
+def find_icon(icon_name, threshold=0.7, device_id=None):
     for ext in [".png", ".jpg", ".jpeg"]:
         template_path = os.path.join(ICON_DIR, icon_name + ext)
         if os.path.exists(template_path):

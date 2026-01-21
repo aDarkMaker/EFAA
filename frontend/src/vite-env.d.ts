@@ -29,3 +29,15 @@ declare module '*.webp' {
   const src: string
   export default src
 }
+
+declare global {
+  interface Window {
+    pywebview?: {
+      api: {
+        close_window: () => void;
+      }
+    }
+  }
+}
+
+export {}

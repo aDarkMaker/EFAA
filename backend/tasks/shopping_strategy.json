@@ -2,6 +2,7 @@
     "selected_strategy": "lowest_price",
     "strategies": {
         "priority_items": {
+            "selected_item": "",
             "description": "优先购买指定物品",
             "target_items": [
                 {

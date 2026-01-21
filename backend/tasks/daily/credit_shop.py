@@ -46,7 +46,7 @@ def get_items(device_id="127.0.0.1:7555"): # 获取当前页面的商品
     anchors = []
     other_elements = []
     for res in raw_results:
-        box, text = res
+        box, text, _ = res
         rect = to_rect(box)
         is_system_text = any(k in text for k in ["信用", "刷新", "售罄", "交易所", "确定", "取消"])
         is_value = text.isdigit() or "%" in text or "×" in text or "x" in text

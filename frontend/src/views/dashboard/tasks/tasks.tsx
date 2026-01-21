@@ -65,8 +65,8 @@ export const Tasks: React.FC = () => {
     <div className='flex flex-col gap-5'>
       <Header
         title='每日代理系统'
-        subtitle='Daily Automation Protocol v3.0'
-        rightAction={<ActionButton label='一键执行' onClick={handleExecute} />}
+        subtitle='欢迎建设塔卫二，管理员'
+        rightAction={<ActionButton label='任务执行' onClick={handleExecute} />}
       />
 
       <div className='flex gap-5'>

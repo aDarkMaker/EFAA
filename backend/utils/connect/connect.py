@@ -32,7 +32,7 @@ def get_devices():
                 devices.append(parts[0])
     return devices
 
-def connect_to_emulator(address="127.0.0.1:5555"):
+def connect_to_emulator(address="127.0.0.1:7555"):
     output = run_adb_command(["connect", address])
     return output and ("connected to" in output or "already connected" in output)
 

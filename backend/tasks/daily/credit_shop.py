@@ -178,6 +178,8 @@ def order_lowest(device_id="127.0.0.1:7555"): # 按折扣买
                 
                 current_points -= item["price"]
                 print(f"[信用点购物] 购买成功，剩余余额: {current_points}")
+
+        continue
  
     return current_points
 

@@ -40,6 +40,12 @@ const ToolBtn: React.FC<{
 export const Sidebar: React.FC = () => {
   const { collapsed, setCollapsed } = useSidebar()
 
+  const handleCloseWindow = () => {
+    if (window.pywebview?.api?.close_window) {
+      window.pywebview.api.close_window()
+    }
+  }
+
   return (
     <div
       className={clsx(
@@ -120,7 +126,7 @@ export const Sidebar: React.FC = () => {
         />
         <ToolBtn
           icon='ri-close-line'
-          onClick={() => {}}
+          onClick={handleCloseWindow}
           ariaLabel='关闭'
           title='关闭'
         />

@@ -76,7 +76,7 @@ export const News: React.FC = () => {
     <div className='flex-1 flex flex-col'>
       <Header
         title='最新资讯'
-        subtitle='NEWS FEED'
+        subtitle='看看鹰小姐的震撼首发'
         rightAction={
           <div className='hidden lg:block'>
             <SearchBar value={searchValue} onChange={setSearchValue} />

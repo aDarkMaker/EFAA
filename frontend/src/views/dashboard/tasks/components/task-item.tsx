@@ -48,10 +48,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
           </span>
         </label>
         <div className='flex flex-col gap-0.5'>
-          <span
-            className='text-xl text-text-main font-bold'
-            style={{ fontFamily: "'MiSans-Bold', sans-serif" }}
-          >
+          <span className='text-xl text-text-main font-bold'>
             {name}
           </span>
           <span className='text-sm text-text-gray'>{description}</span>

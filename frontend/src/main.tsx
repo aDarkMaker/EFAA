@@ -16,7 +16,7 @@ function App () {
   return (
     <BrowserRouter>
       <SidebarProvider>
-        <div className='app flex w-screen h-screen overflow-auto' style={{ minWidth: '400px', minHeight: '600px' }}>
+        <div className='app flex w-screen h-screen overflow-auto' style={{ minWidth: '800px', minHeight: '600px' }}>
           <Routes>
             <Route path='/' element={<Dashboard />}>
               <Route index element={<Portal />} />

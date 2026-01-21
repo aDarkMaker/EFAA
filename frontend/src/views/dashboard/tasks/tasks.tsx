@@ -4,6 +4,7 @@ import { ActionButton } from '@/views/dashboard/components/action-button'
 import { Header } from '@/views/dashboard/components/header'
 import type { Task } from '@/views/dashboard/tasks/components/task-list'
 import { TaskList } from '@/views/dashboard/tasks/components/task-list'
+import { Terminal } from '@/views/dashboard/tasks/components/terminal'
 
 const initialTasks: Task[] = [
   {
@@ -68,10 +69,18 @@ export const Tasks: React.FC = () => {
         rightAction={<ActionButton label='一键执行' onClick={handleExecute} />}
       />
 
-      <div className='flex flex-col gap-5'>
-        <TaskList tasks={tasks} onTaskChange={handleTaskChange} />
+      <div className='flex gap-5'>
+        <div className='flex-1 flex flex-col min-w-72'>
+          <div className='text-text-gray text-sm mb-2 px-1'>Terminal</div>
+          <Terminal />
+        </div>
+        <div className='flex-1 flex flex-col min-w-80'>
+          <div className='text-text-gray text-sm mb-2 px-1'>Tasks</div>
+          <div className='flex-1 overflow-y-auto'>
+            <TaskList tasks={tasks} onTaskChange={handleTaskChange} />
+          </div>
+        </div>
       </div>
-
     </div>
   )
 }

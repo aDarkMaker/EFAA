@@ -20,17 +20,21 @@ def run_task(device_id="127.0.0.1:7555"):
     time.sleep(5)
     
     target_text = "点击任意位置继续"
+    start_time = time.time()
     while True:
+        if time.time() - start_time > 30:
+            print("[一键唤醒] 任务失败，请检查是否有重大更新或需要重启")
+            return
+
         res = ocr(target_text, device=device_id)
         if res:
             cx = (res[0] + res[2]) // 2
             cy = (res[1] + res[3]) // 2
             click(cx, cy, device_id=device_id)
+            print("[一键唤醒] 任务完成")
             break
         
         time.sleep(2)
-
-    print("[一键唤醒] 任务完成")
 
 if __name__ == "__main__":
     run_task()

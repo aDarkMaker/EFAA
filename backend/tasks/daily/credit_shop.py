@@ -202,15 +202,12 @@ def run_task(device_id="127.0.0.1:7555"):
         
         if selected_strategy == "priority_items":
             priority_config = strategy_config.get("strategies", {}).get("priority_items", {})
-            target_items = priority_config.get("target_items", [])
-            if not target_items:
+            selected_item = priority_config.get("selected_item")
+            if not selected_item:
                 print("[信用点购物] 错误：请先指定购买物品")
                 return
             
-            for item_cfg in target_items:
-                item_name = item_cfg.get("name")
-                if item_name:
-                    current_points = order_priority(item_name, device_id)
+            current_points = order_priority(selected_item, device_id)
         else:
             current_points = order_lowest(device_id)
 

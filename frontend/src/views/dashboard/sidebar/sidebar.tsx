@@ -4,6 +4,8 @@ import { clsx } from 'clsx'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
+import logo from '@/assets/img/logo.png'
+
 import { useSidebar } from './context'
 
 const navItems = [
@@ -44,13 +46,18 @@ export const Sidebar: React.FC = () => {
         'fixed inset-y-0 left-0 z-30',
         'flex h-full flex-col',
         'border-r transition-[width] duration-200',
-        'bg-bg-sidebar border-border',
+        'bg-bg-sidebar border-border box-content', /* NOTICE: box-content used */
         collapsed ? 'w-16' : 'w-64',
       )}
     >
       {/* brand */}
-      <div className='sidebar-brand flex h-14 items-center px-5 my-4'>
+      <div className='sidebar-brand h-14 my-4 px-3'>
         <div className='flex items-center gap-3 overflow-hidden'>
+          <img
+            src={logo}
+            alt='Logo'
+            className='flex-shrink-0 w-10 h-10'
+          />
           {!collapsed && (
             <div className='brand-text flex min-w-0 flex-col'>
               <span className='brand-title truncate text-base font-semibold text-text-main'>
@@ -80,11 +87,10 @@ export const Sidebar: React.FC = () => {
                   isActive
                     ? 'bg-accent text-text-reverse'
                     : 'text-text-gray hover:bg-bg-card hover:text-text-main',
-                  collapsed && 'justify-center px-2',
                 )}
                 title={collapsed ? item.label : undefined}
               >
-                <span className='nav-icon grid h-8 w-8 place-items-center'>
+                <span className='nav-icon grid h-8 w-6 place-items-center flex-shrink-0'>
                   <i className={clsx(
                     'text-xl',
                     item.icon,
@@ -102,7 +108,7 @@ export const Sidebar: React.FC = () => {
       {/* footer */}
       <div
         className={clsx(
-          'sidebar-footer border-t border-border px-3 py-3 flex items-center',
+          'sidebar-footer border-t border-border px-3 py-3 flex items-center text-3xl',
           collapsed ? 'flex-col' : 'flex-row-reverse justify-between',
         )}
       >

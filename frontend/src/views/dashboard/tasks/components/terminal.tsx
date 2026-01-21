@@ -22,16 +22,13 @@ export const Terminal: React.FC<TerminalProps> = ({ logs = [] }) => {
       className={clsx(
         'bg-bg-card border border-border rounded-xl px-6 py-4 flex flex-col flex-1',
         'overflow-y-auto scrollbar-thin-dark',
+        'line-height-1.6',
+        'text-sm',
       )}
-      style={{
-        fontFamily: 'monospace',
-        fontSize: '14px',
-        lineHeight: '1.6',
-      }}
     >
       {displayLogs.length === 0
         ? (
-          <div className='text-text-gray italic'>暂无日志输出...</div>
+          <div className='text-text-gray'>暂无日志输出...</div>
           )
         : (
             displayLogs.map((log, index) => (

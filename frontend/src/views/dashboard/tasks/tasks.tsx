@@ -70,11 +70,11 @@ export const Tasks: React.FC = () => {
       />
 
       <div className='flex gap-5'>
-        <div className='flex-1 flex flex-col' style={{ minWidth: '400px' }}>
+        <div className='flex-1 flex flex-col min-w-72'>
           <div className='text-text-gray text-sm mb-2 px-1'>Terminal</div>
           <Terminal />
         </div>
-        <div className='flex-1 flex flex-col' style={{ minWidth: '400px' }}>
+        <div className='flex-1 flex flex-col min-w-80'>
           <div className='text-text-gray text-sm mb-2 px-1'>Tasks</div>
           <div className='flex-1 overflow-y-auto'>
             <TaskList tasks={tasks} onTaskChange={handleTaskChange} />

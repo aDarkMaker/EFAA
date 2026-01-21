@@ -1,0 +1,46 @@
+{
+    "selected_strategy": "lowest_price",
+    "strategies": {
+        "priority_items": {
+            "description": "优先购买指定物品",
+            "target_items": [
+                {
+                    "name": "武库配额",
+                    "ocr_text": "武库配额"
+                },
+                {
+                    "name": "嵌晶玉",
+                    "ocr_text": "嵌晶玉"
+                },
+                {
+                    "name": "协议棱柱",
+                    "ocr_text": "协议棱柱"
+                },
+                {
+                    "name": "武器检查单元",
+                    "ocr_text": "武器检查单元"
+                },
+                {
+                    "name": "武器检查装置",
+                    "ocr_text": "武器检查装置"
+                },
+                {
+                    "name": "初级作战记录",
+                    "ocr_text": "初级作战记录"
+                },
+                {
+                    "name": "中级作战记录",
+                    "ocr_text": "中级作战记录"
+                },
+                {
+                    "name": "折金票",
+                    "ocr_text": "折金票"
+                }
+            ]
+        },
+        "lowest_price": {
+            "description": "优先购买折扣商品"
+        }
+    },
+    "is_refresh": false
+}

@@ -60,7 +60,7 @@ export const Portal: React.FC = () => {
       <div className='flex-1 flex flex-col relative pr-6 min-w-72'>
         <Header
           title='开发日志'
-          subtitle='追踪最新功能更新与优化记录，持续提升干员体验。'
+          subtitle='来看看我们最近加了什么新功能！'
         />
 
         <div className='grid grid-cols-1 gap-4'>

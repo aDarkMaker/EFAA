@@ -24,6 +24,17 @@ def run_task(device_id="127.0.0.1:7555"):
         keyevent("space", device_id=device_id)
         time.sleep(0.2)
 
+        task_config_path = os.path.join(BASE_DIR, "tasks", "task.json")
+        try:
+            import json
+            with open(task_config_path, "r", encoding="utf-8") as f:
+                task_config = json.load(f)
+                if task_config.get("credit_shop", {}).get("default", False):
+                    from tasks.daily.credit_shop import run_task as run_shop_task
+                    run_shop_task(device_id=device_id)
+        except Exception as e:
+            return False
+
         keyevent("esc", device_id=device_id)
 
         print("[领取商城信用点] 任务完成")

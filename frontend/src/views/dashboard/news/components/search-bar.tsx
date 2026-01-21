@@ -5,7 +5,7 @@ interface SearchBarProps {
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({
-  placeholder = '搜索游戏、攻略、视频...',
+  placeholder = '管理员，你想看看点什么？',
   value,
   onChange,
 }) => {

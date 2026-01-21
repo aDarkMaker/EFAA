@@ -43,6 +43,8 @@ if __name__ == "__main__":
     server_thread = threading.Thread(target=start_api_server, daemon=True)
     server_thread.start()
 
+    icon_path = os.path.join(os.path.dirname(__file__), "public", "icon_black.png")
+
     api = Api()
     windows = webview.create_window(
         "EFAA",
@@ -51,9 +53,9 @@ if __name__ == "__main__":
         height=800,
         frameless=True,
         js_api=api,
-        resizable=False
+        resizable=False,
     )
 
     windows.events.closed += lambda: stop_everything_and_exit()
 
-    webview.start(debug=True)
+    webview.start(debug=True, icon=icon_path)

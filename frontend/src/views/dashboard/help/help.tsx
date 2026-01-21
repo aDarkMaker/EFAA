@@ -16,7 +16,7 @@ export const Help: React.FC = () => {
     <div className='flex-1 flex flex-col'>
       <Header
         title='帮助文档中心'
-        subtitle='开发指南'
+        subtitle='有问题先看这里'
         rightAction={
           <div className='hidden lg:block'>
             <SearchBar

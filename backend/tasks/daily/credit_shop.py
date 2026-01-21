@@ -155,7 +155,6 @@ def order_priority(item_name: str, device_id="127.0.0.1:7555"): # 指定物品
  
     return current_points
 
-
 def order_lowest(device_id="127.0.0.1:7555"): # 按折扣买
     current_points = get_points(device_id)
     current_items = get_items(device_id)

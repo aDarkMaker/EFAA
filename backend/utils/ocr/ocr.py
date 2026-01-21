@@ -85,3 +85,11 @@ def ocr_all(target_text, device=None):
         print("[OCR Error] Failed to get screenshot")
         return []
     return find_all_text_in_image(img, target_text)
+
+def get_ocr_result(device=None, img=None):
+    if img is None:
+        img = get_screenshot(device)
+    if img is None:
+        return []
+    results, _ = ocr_engine(img)
+    return results or []

@@ -7,6 +7,7 @@ import { BasicInfoCard } from '@/views/dashboard/settings/cards/basic-info-card'
 import { GeneralOptionsCard } from '@/views/dashboard/settings/cards/general-options-card'
 import { NotificationCard } from '@/views/dashboard/settings/cards/notification-card'
 import { PathSettingsCard } from '@/views/dashboard/settings/cards/path-settings-card'
+import { ShoppingStrategyCard } from '@/views/dashboard/settings/cards/shopping-strategy-card'
 
 export const Settings: React.FC = () => {
   return (
@@ -21,7 +22,6 @@ export const Settings: React.FC = () => {
                 'bg-accent text-text-reverse px-6 py-3 rounded-lg',
                 'font-bold text-base cursor-pointer',
                 'flex items-center gap-2 transition-transform',
-                'hover:-translate-y-0.5 active:translate-y-0',
               )}
             >
               <i className='ri-download-cloud-2-line' />
@@ -37,6 +37,7 @@ export const Settings: React.FC = () => {
         <GeneralOptionsCard />
         <BasicInfoCard />
         <AdvancedSettingsCard />
+        <ShoppingStrategyCard />
         <NotificationCard className='lg:col-span-2' />
       </div>
     </div>

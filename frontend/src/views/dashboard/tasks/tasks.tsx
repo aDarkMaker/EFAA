@@ -1,83 +1,97 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import { ActionButton } from '@/views/dashboard/components/action-button'
+import { useApi } from '@/common/api'
+import type { TaskConfig } from '@/common/api/tasks'
+import { toggleTask } from '@/common/api/tasks'
 import { Header } from '@/views/dashboard/components/header'
+import { ActionButton } from '@/views/dashboard/tasks/components/action-button'
 import type { Task } from '@/views/dashboard/tasks/components/task-list'
 import { TaskList } from '@/views/dashboard/tasks/components/task-list'
 import { Terminal } from '@/views/dashboard/tasks/components/terminal'
 
-const initialTasks: Task[] = [
-  {
-    id: 'ji_jiang_hao_jian_li_shou_cai',
-    name: '帝江号基建收菜',
-    description: '自动化收集所有生产线产出，包含信用点与经验书',
-    checked: false,
-  },
-  {
-    id: 'di_tu_yi_jie_suo_zi_yuan_dian_ri_chang_hui_shou',
-    name: '地图已解锁资源点日常回收',
-    description: '遍历主地图所有扇区，回收常规资源点',
-    checked: false,
-  },
-  {
-    id: 'di_tu_yi_jie_gui_zhong_zi_yuan_cai_ji',
-    name: '地图已解锁贵重资源采集',
-    description: '优先采集高价值稀有矿石与能源聚合体',
-    checked: false,
-  },
-  {
-    id: 'gao_nan_yu_ji_dian_ri_chang_zi_yuan_fu_ben_ti_li_xiao_hao',
-    name: '高难淤积点/日常资源副本体力消耗',
-    description: '自动代理最高效率副本，清空溢出体力',
-    checked: false,
-  },
-  {
-    id: 'ri_chang_shang_cheng_xin_lai_shou_chi_jia_hui_huan_wu_zi',
-    name: '每日商城信赖收取+兑换物资',
-    description: '领取每日免费礼包，使用信用点兑换折扣材料',
-    checked: false,
-  },
-  {
-    id: 'zhi_min_di_ri_chang_zi_yuan_jiao_huan_zi_dong_chao_gu',
-    name: '殖民地日常资源交换+自动炒股',
-    description: '监控市场波动，自动买入低价资源并交换',
-    checked: false,
-  },
-]
+// 将 API 返回的 TaskConfig 转换为 Task[]
+const convertTaskConfigToTasks = (taskConfig: TaskConfig): Task[] => {
+  return Object.entries(taskConfig).map(([taskId, config]) => ({
+    id: taskId,
+    name: config.name,
+    description: '',
+    checked: config.default,
+  }))
+}
 
 export const Tasks: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>(initialTasks)
+  const [taskConfig, error, refreshTasks] = useApi('getTasks', [])
+  const [shouldExecute, setShouldExecute] = useState<boolean>(false)
+  const [executeResult, executeError] = useApi('execute', shouldExecute && [])
+  const [logs, setLogs] = useState<string[]>([])
+  const [isExecuting, setIsExecuting] = useState(false)
 
-  const handleTaskChange = (taskId: string, checked: boolean) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === taskId ? { ...task, checked } : task,
-      ),
-    )
+  const tasks: Task[] = taskConfig ? convertTaskConfigToTasks(taskConfig) : []
+
+  const handleTaskChange = async (taskId: string, checked: boolean) => {
+    try {
+      await toggleTask(taskId, checked)
+      refreshTasks()
+    } catch (err) {
+      console.error('Failed to toggle task:', err)
+    }
   }
 
   const handleExecute = () => {
-    console.log('执行任务')
-    // 这里可以添加执行逻辑
+    setIsExecuting(true)
+    setLogs((prev) => [...prev, '开始执行任务...'])
+    setShouldExecute(true)
   }
+
+  // 监听执行结果
+  useEffect(() => {
+    if (executeResult) {
+      setLogs((prev) => [
+        ...prev,
+        `执行完成: ${executeResult.message || executeResult.status}`,
+      ])
+      setIsExecuting(false)
+      setShouldExecute(false)
+    }
+    if (executeError) {
+      const errorMessage = executeError instanceof Error ? executeError.message : '执行任务失败'
+      setLogs((prev) => [...prev, `错误: ${errorMessage}`])
+      setIsExecuting(false)
+      setShouldExecute(false)
+    }
+  }, [executeResult, executeError])
 
   return (
     <div className='flex flex-col gap-5'>
       <Header
         title='每日代理系统'
         subtitle='欢迎建设塔卫二，管理员'
-        rightAction={<ActionButton label='任务执行' onClick={handleExecute} />}
+        rightAction={
+          <ActionButton
+            label={isExecuting ? '执行中...' : '任务执行'}
+            onClick={handleExecute}
+            disabled={isExecuting}
+          />
+        }
       />
 
       <div className='flex gap-5'>
         <div className='flex-1 flex flex-col min-w-72'>
           <div className='text-text-gray text-sm mb-2 px-1'>Terminal</div>
-          <Terminal />
+          <Terminal logs={logs} />
         </div>
         <div className='flex-1 flex flex-col min-w-80'>
           <div className='text-text-gray text-sm mb-2 px-1'>Tasks</div>
           <div className='flex-1 overflow-y-auto'>
-            <TaskList tasks={tasks} onTaskChange={handleTaskChange} />
+            {error
+              ? (
+                <div className='text-red-500 text-sm p-4'>
+                  加载任务失败，请稍后重试
+                </div>
+                )
+              : taskConfig === undefined
+                ? <div className='text-text-gray text-sm p-4'>加载中...</div>
+                : <TaskList tasks={tasks} onTaskChange={handleTaskChange} />}
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { throwErrorMiddleware } from '@/common/request/middlewares/throw-error'
 
 import RequestHub from '../../core/request/request-hub'
 
-const baseUrl = 'localhost:8000'
+const baseUrl = 'http://localhost:8000'
 
 export const requestDefault = () => {
   const request = new RequestHub()

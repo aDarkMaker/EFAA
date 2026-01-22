@@ -36,7 +36,7 @@ export const NewsCard: React.FC<NewsCardProps> = ({
       className={clsx(
         'bg-bg-card border border-border rounded-2xl overflow-hidden',
         'flex flex-col transition-all',
-        'hover:-translate-y-1 hover:shadow-lg hover:border-accent/30',
+        'hover:shadow-lg hover:border-accent/30',
         colSpan === 2 && 'lg:col-span-2',
         colSpan === 3 && 'lg:col-span-2 2xl:col-span-3',
       )}

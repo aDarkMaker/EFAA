@@ -23,7 +23,7 @@ export const Terminal: React.FC<TerminalProps> = ({ logs = [] }) => {
         'bg-bg-card border border-border rounded-xl px-6 py-4 flex flex-col flex-1',
         'overflow-y-auto scrollbar-thin-dark',
         'line-height-1.6',
-        'text-sm',
+        'text-sm min-h-32',
       )}
     >
       {displayLogs.length === 0

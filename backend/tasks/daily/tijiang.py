@@ -24,9 +24,14 @@ def handle_manufacturing_cabin(device_id):
     res_collect = ocr("收取", device=device_id)
     if res_collect:
         click_center(res_collect, device_id)
-        time.sleep(1)
+        time.sleep(2)
+
+        click(960, 675, device_id=device_id)
+
+        time.sleep(2)
         
         max_icons = find_best_icon(["max", "max_2"], device_id=device_id)
+        
         if max_icons:
             click_center(max_icons[:4], device_id)
             time.sleep(1)
@@ -70,7 +75,7 @@ def run_tijiang_task(device_id="127.0.0.1:7555"):
     print("[基建收菜] 任务开始")
     connect_to_emulator(device_id)
 
-    tijiang_icons = find_icon("Tijiang", threshold=0.5, device_id=device_id)
+    tijiang_icons = find_best_icon(["Tijiang", "Tijiang_2"], threshold=0.5, device_id=device_id)
     
     if not tijiang_icons:
         config_path = os.path.join(BASE_DIR, "utils", "click", "config.json")
@@ -109,10 +114,10 @@ def run_tijiang_task(device_id="127.0.0.1:7555"):
         else:
             return
 
-        tijiang_icons = find_icon("Tijiang", threshold=0.5, device_id=device_id)
+        tijiang_icons = find_best_icon(["Tijiang", "Tijiang_2"], threshold=0.5, device_id=device_id)
 
     if tijiang_icons:
-        click_center(tijiang_icons[0], device_id)
+        click_center(tijiang_icons[:4], device_id)
         time.sleep(3)
 
         manufacturing_cabins = ocr_all("制造舱", device=device_id)

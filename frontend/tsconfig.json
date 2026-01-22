@@ -15,7 +15,9 @@
 		"noEmit": true,
 
 		// Best practices
+		"types": ["estree", "bun", "react", "react-dom"],
 		"strict": true,
+		"typeRoots": ["./node_modules/@types"],
 		"skipLibCheck": true,
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedIndexedAccess": true,

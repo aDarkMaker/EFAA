@@ -9,7 +9,7 @@ if BASE_DIR not in sys.path:
 
 from utils.connect.connect import connect_to_emulator
 from utils.ocr.ocr import ocr, ocr_all
-from utils.ocr.ocr_icon import find_icon
+from utils.ocr.ocr_icon import find_icon, find_best_icon
 from utils.click.click import click
 from utils.keyboard.keyboard import keyevent
 
@@ -26,9 +26,9 @@ def handle_manufacturing_cabin(device_id):
         click_center(res_collect, device_id)
         time.sleep(1)
         
-        max_icons = find_icon("max", device_id=device_id)
+        max_icons = find_best_icon(["max", "max_2"], device_id=device_id)
         if max_icons:
-            click_center(max_icons[0], device_id)
+            click_center(max_icons[:4], device_id)
             time.sleep(1)
             
         res_confirm = ocr("确认", device=device_id)
@@ -36,14 +36,14 @@ def handle_manufacturing_cabin(device_id):
             click_center(res_confirm, device_id)
             time.sleep(2)
             
-        close_icons = find_icon("close", device_id=device_id)
-        if close_icons:
-            click_center(close_icons[0], device_id)
+        best_close = find_best_icon(["close", "close_2"], threshold=0.4, device_id=device_id)
+        if best_close:
+            click_center(best_close[:4], device_id)
             time.sleep(1)
     else:
-        close_icons = find_icon("close", device_id=device_id)
-        if close_icons:
-            click_center(close_icons[0], device_id)
+        best_close = find_best_icon(["close", "close_2"], threshold=0.4, device_id=device_id)
+        if best_close:
+            click_center(best_close[:4], device_id)
             time.sleep(1)
 
 def handle_cultivation_cabin(device_id):
@@ -56,21 +56,21 @@ def handle_cultivation_cabin(device_id):
         keyevent("space", device_id=device_id)
         time.sleep(2)
         
-        close_icons = find_icon("close", device_id=device_id)
-        if close_icons:
-            click_center(close_icons[0], device_id)
+        best_close = find_best_icon(["close", "close_2"], threshold=0.4, device_id=device_id)
+        if best_close:
+            click_center(best_close[:4], device_id)
             time.sleep(1)
     else:
-        close_icons = find_icon("close", device_id=device_id)
-        if close_icons:
-            click_center(close_icons[0], device_id)
+        best_close = find_best_icon(["close", "close_2"], threshold=0.4, device_id=device_id)
+        if best_close:
+            click_center(best_close[:4], device_id)
             time.sleep(1)
 
 def run_tijiang_task(device_id="127.0.0.1:7555"):
     print("[基建收菜] 任务开始")
     connect_to_emulator(device_id)
 
-    tijiang_icons = find_icon("Tijiang", device_id=device_id)
+    tijiang_icons = find_icon("Tijiang", threshold=0.5, device_id=device_id)
     
     if not tijiang_icons:
         config_path = os.path.join(BASE_DIR, "utils", "click", "config.json")
@@ -94,7 +94,7 @@ def run_tijiang_task(device_id="127.0.0.1:7555"):
         else:
             return
 
-        portals = find_icon("portal", device_id=device_id)
+        portals = find_icon("portal", device_id=device_id, threshold=0.4)
         if portals:
             rightmost_portal = max(portals, key=lambda b: b[0])
             click_center(rightmost_portal, device_id)
@@ -109,7 +109,7 @@ def run_tijiang_task(device_id="127.0.0.1:7555"):
         else:
             return
 
-        tijiang_icons = find_icon("Tijiang", device_id=device_id)
+        tijiang_icons = find_icon("Tijiang", threshold=0.5, device_id=device_id)
 
     if tijiang_icons:
         click_center(tijiang_icons[0], device_id)
@@ -134,9 +134,9 @@ def run_tijiang_task(device_id="127.0.0.1:7555"):
             handle_cultivation_cabin(device_id)
             time.sleep(1)
 
-        close_icons = find_icon("close", device_id=device_id)
-        if close_icons:
-            click_center(close_icons[0], device_id)
+        best_close = find_best_icon(["close", "close_2"], threshold=0.4, device_id=device_id)
+        if best_close:
+            click_center(best_close[:4], device_id)
             time.sleep(1)
         
         print("[基建收菜] 任务完成")

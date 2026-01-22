@@ -34,6 +34,8 @@ def run_task(device_id="127.0.0.1:7555"):
                     run_shop_task(device_id=device_id)
         except Exception as e:
             return False
+        
+        time.sleep(2)
 
         keyevent("esc", device_id=device_id)
 

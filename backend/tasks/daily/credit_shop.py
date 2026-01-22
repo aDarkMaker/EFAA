@@ -27,7 +27,7 @@ def refresh(device_id="127.0.0.1:7555"): # 刷新
 
 def get_items(device_id="127.0.0.1:7555"): # 获取当前页面的商品
 
-    region = (0, 0, 1920, 1080) # 目前为占位
+    region = (11, 165, 1772, 908) # 目前为占位
     
     from utils.ocr.ocr import get_screenshot, get_ocr_result
     img = get_screenshot(device_id)
@@ -106,7 +106,7 @@ def get_items(device_id="127.0.0.1:7555"): # 获取当前页面的商品
 
 def get_points(device_id="127.0.0.1:7555"): # 获取当前信用点
 
-    region = (0, 0, 1920, 1080) # 目前为占位
+    region = (1645, 17, 1787, 69) # 目前为占位
     
     from utils.ocr.ocr import get_screenshot, get_ocr_result
     img = get_screenshot(device_id)
@@ -140,7 +140,7 @@ def order_priority(item_name: str, device_id="127.0.0.1:7555"): # 指定物品
 
                 rect = item["rect"]
                 cx = (rect[0] + rect[2]) // 2
-                cy = (rect[1] + rect[3]) // 2
+                cy = (rect[1] + rect[3]) // 2 - 100
                 click(cx, cy, device_id=device_id)
                 time.sleep(1)
                 
@@ -166,12 +166,12 @@ def order_lowest(device_id="127.0.0.1:7555"): # 按折扣买
             
             rect = item["rect"]
             cx = (rect[0] + rect[2]) // 2
-            cy = (rect[1] + rect[3]) // 2
+            cy = (rect[1] + rect[3]) // 2 - 100
             click(cx, cy, device_id=device_id)
             time.sleep(1)
             
             if click_text("确认购买", device_id=device_id):
-                time.sleep(2)
+                time.sleep(3)
 
                 keyevent("space", device_id=device_id)
                 time.sleep(1)

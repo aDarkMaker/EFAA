@@ -33,13 +33,11 @@ def find_all_images_in_image(img, template_path, threshold=0.7):
         return []
 
     res = cv2.matchTemplate(img, template, cv2.TM_CCOEFF_NORMED)
-    final_boxes = []
+    final_results = []
     res_copy = res.copy()
 
     while True:
         min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res_copy)
-
-        print(f"[Debug] Best match score: {max_val:.4f}")
 
         if max_val < threshold:
             break
@@ -48,7 +46,7 @@ def find_all_images_in_image(img, template_path, threshold=0.7):
         end_x = start_x + tpl_w
         end_y = start_y + tpl_h
         
-        final_boxes.append([int(start_x), int(start_y), int(end_x), int(end_y)])
+        final_results.append([int(start_x), int(start_y), int(end_x), int(end_y), float(max_val)])
         
         mask_w_offset = tpl_w // 3
         mask_h_offset = tpl_h // 3
@@ -60,9 +58,13 @@ def find_all_images_in_image(img, template_path, threshold=0.7):
         
         res_copy[mask_y1:mask_y2, mask_x1:mask_x2] = 0
 
-    return final_boxes
+    return final_results
 
 def find_icon(icon_name, threshold=0.7, device_id=None):
+    results = find_icon_with_score(icon_name, threshold, device_id)
+    return [r[:4] for r in results]
+
+def find_icon_with_score(icon_name, threshold=0.7, device_id=None):
     for ext in [".png", ".jpg", ".jpeg"]:
         template_path = os.path.join(ICON_DIR, icon_name + ext)
         if os.path.exists(template_path):
@@ -73,3 +75,24 @@ def find_icon(icon_name, threshold=0.7, device_id=None):
     
     print(f"[OCR Error] Icon '{icon_name}' not found")
     return []
+
+def find_best_icon(icon_names, threshold=0.5, device_id=None):
+    img = get_screenshot(device_id)
+    if img is None: return None
+    
+    best_res = None
+    
+    for name in icon_names:
+        for ext in [".png", ".jpg", ".jpeg"]:
+            path = os.path.join(ICON_DIR, name + ext)
+            if os.path.exists(path):
+                results = find_all_images_in_image(img, path, threshold)
+                if results:
+                    current_best = max(results, key=lambda r: r[4])
+                    if best_res is None or current_best[4] > best_res[4]:
+                        best_res = current_best
+                break
+    
+    if best_res:
+        print(f"[Debug] Best match icon found with score: {best_res[4]:.4f}")
+    return best_res

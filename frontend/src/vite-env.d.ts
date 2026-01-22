@@ -35,6 +35,7 @@ declare global {
     pywebview?: {
       api: {
         close_window: () => void;
+        get_api_port: () => Promise<number>;
       }
     }
   }

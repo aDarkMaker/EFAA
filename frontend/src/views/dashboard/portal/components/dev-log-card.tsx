@@ -22,7 +22,7 @@ export const DevLogCard: React.FC<DevLogCardProps> = ({
       className={clsx(
         'bg-bg-card border border-border rounded-2xl p-4',
         'flex flex-col',
-        'transition-all hover:-translate-y-1 hover:border-accent',
+        'transition-all hover:border-accent',
         'hover:shadow-lg relative overflow-hidden',
       )}
     >

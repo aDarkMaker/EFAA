@@ -4,18 +4,19 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "bun --hot src/build.ts",
-		"build": "bun build ./src/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
-		"start": "NODE_ENV=production bun src/build.ts"
+		"dev": "bunx --bun vite .",
+		"build": "echo 'not implemented'",
+		"start": "echo 'not implemented'"
 	},
 	"dependencies": {
-		"@headlessui/react": "^2.2.9",
 		"clsx": "^2.1.1",
 		"cspell": "^9.4.0",
-		"prettier": "^3.7.4",
 		"react": "^19",
 		"react-dom": "^19",
+		"react-markdown": "^10.1.0",
 		"react-router-dom": "^7.12.0",
+		"rehype-raw": "^7.0.0",
+		"remark-gfm": "^4.0.1",
 		"remixicon": "^4.8.0"
 	},
 	"devDependencies": {
@@ -25,6 +26,7 @@
 		"@types/react-dom": "^19",
 		"eslint": "^9.39.2",
 		"eslint-plugin-simple-import-sort": "^12.1.1",
+		"knip": "^5.82.1",
 		"neostandard": "^0.12.2",
 		"tailwindcss": "^4.1.18",
 		"vite": "^7.3.1"

@@ -10,7 +10,7 @@ if BASE_DIR not in sys.path:
 from utils.connect.connect import connect_to_emulator
 from utils.ocr.ocr import ocr, ocr_all
 from utils.ocr.ocr_icon import find_icon, find_best_icon
-from utils.click.click import click
+from utils.click.click import click, click_text
 from utils.keyboard.keyboard import keyevent
 
 def click_center(box, device_id):
@@ -75,7 +75,7 @@ def run_tijiang_task(device_id="127.0.0.1:7555"):
     print("[基建收菜] 任务开始")
     connect_to_emulator(device_id)
 
-    tijiang_icons = find_best_icon(["Tijiang", "Tijiang_2"], threshold=0.5, device_id=device_id)
+    tijiang_icons = find_best_icon(["Tijiang", "Tijiang_2"], threshold=0.7, device_id=device_id)
     
     if not tijiang_icons:
         config_path = os.path.join(BASE_DIR, "utils", "click", "config.json")
@@ -107,10 +107,13 @@ def run_tijiang_task(device_id="127.0.0.1:7555"):
         else:
             return
 
-        res = ocr("传送", device=device_id)
-        if res:
-            click_center(res, device_id)
-            time.sleep(6)
+        teleport_buttons = ocr_all("传送", device=device_id)
+
+        if teleport_buttons:
+            teleport_buttons.sort(key=lambda b: b[3], reverse=True)
+            bottom_teleport = teleport_buttons[0]
+            click_center(bottom_teleport, device_id)
+            time.sleep(20)
         else:
             return
 

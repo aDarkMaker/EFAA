@@ -9,6 +9,7 @@ DEV_URL = "http://localhost:5173"
 server = None
 server_thread = None
 windows = None
+current_port = None
 
 def pick_free_port(host="127.0.0.1"):
     s = socket.socket()
@@ -18,10 +19,10 @@ def pick_free_port(host="127.0.0.1"):
     return port
 
 def start_api_server():
-    global server
+    global server, current_port
     from backend.main import app
-    port = pick_free_port()
-    config = uvicorn.Config(app, host="127.0.0.1", port=port, log_level="info")
+    current_port = pick_free_port()
+    config = uvicorn.Config(app, host="127.0.0.1", port=current_port, log_level="info")
     server = uvicorn.Server(config)
     server.run()
 
@@ -38,6 +39,9 @@ class Api:
     def close_window(self):
         if windows is not None:
             windows.destroy()
+
+    def get_api_port(self):
+        return current_port
 
 if __name__ == "__main__":
     server_thread = threading.Thread(target=start_api_server, daemon=True)

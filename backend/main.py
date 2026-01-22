@@ -23,7 +23,6 @@ app.add_middleware(
 TASK_CONFIG = os.path.join(BASE_DIR, "tasks", "task.json")
 SHOPPING_CONFIG = os.path.join(BASE_DIR, "tasks", "shopping_strategy.json")
 
-# 统一响应格式处理
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException):
     return JSONResponse(

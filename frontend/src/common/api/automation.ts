@@ -6,7 +6,7 @@ export interface ExecuteResponse {
 }
 
 export const execute = async (): Promise<ExecuteResponse> => {
-  const request = requestDefault()
+  const request = await requestDefault()
   const response = await request.post<ExecuteResponse>('/api/execute')
   return response.data
 }

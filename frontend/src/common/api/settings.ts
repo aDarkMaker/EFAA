@@ -43,13 +43,13 @@ export interface UpdateShoppingSettingsResponse {
 }
 
 export const getShoppingSettings = async (): Promise<ShoppingStrategy> => {
-  const request = requestDefault()
+  const request = await requestDefault()
   const response = await request.get<GetShoppingSettingsResponse>('/api/settings/shopping')
   return response.data.data
 }
 
 export const updateShoppingSettings = async (newData: UpdateShoppingSettingsParams): Promise<UpdateShoppingSettingsResponse> => {
-  const request = requestDefault()
+  const request = await requestDefault()
   const response = await request.post<UpdateShoppingSettingsResponse>('/api/settings/shopping/update', newData)
   return response.data
 }

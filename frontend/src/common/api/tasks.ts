@@ -27,13 +27,13 @@ export interface ToggleTaskResponse {
 }
 
 export const getTasks = async (): Promise<TaskConfig> => {
-  const request = requestDefault()
+  const request = await requestDefault()
   const response = await request.get<GetTasksResponse>('/api/tasks')
   return response.data.data
 }
 
 export const toggleTask = async (taskId: string, enabled: boolean): Promise<ToggleTaskResponse['data']> => {
-  const request = requestDefault()
+  const request = await requestDefault()
   const response = await request.post<ToggleTaskResponse>(
     `/api/tasks/toggle?task_id=${encodeURIComponent(taskId)}&enabled=${enabled}`,
   )

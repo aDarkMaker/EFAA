@@ -1,11 +1,11 @@
 {
     "run": {
         "name": "一键唤醒",
-        "default": true
+        "default": false
     },
     "credit_points": {
         "name": "领取商城信用点",
-        "default": true
+        "default": false
     },
     "credit_shop": {
         "name": "信用点购物",

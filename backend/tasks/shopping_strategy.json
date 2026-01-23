@@ -2,7 +2,7 @@
     "selected_strategy": "lowest_price",
     "strategies": {
         "priority_items": {
-            "selected_item": "",
+            "selected_item": "协议棱柱",
             "description": "优先购买指定物品",
             "target_items": [
                 {

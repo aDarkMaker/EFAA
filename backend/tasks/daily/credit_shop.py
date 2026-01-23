@@ -147,7 +147,7 @@ def order_priority(item_name: str, device_id="127.0.0.1:7555"): # 指定物品
                 if click_text("确认购买", device_id=device_id):
                     time.sleep(2)
 
-                    keyevent("space", device_id=device_id)
+                    click(960, 540, device_id=device_id)
                     time.sleep(1)
                     
                     current_points -= item["price"]
@@ -173,7 +173,8 @@ def order_lowest(device_id="127.0.0.1:7555"): # 按折扣买
             if click_text("确认购买", device_id=device_id):
                 time.sleep(3)
 
-                keyevent("space", device_id=device_id)
+                click(960, 540, device_id=device_id)
+
                 time.sleep(1)
                 
                 current_points -= item["price"]

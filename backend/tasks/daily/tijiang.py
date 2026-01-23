@@ -11,7 +11,6 @@ from utils.connect.connect import connect_to_emulator
 from utils.ocr.ocr import ocr, ocr_all
 from utils.ocr.ocr_icon import find_icon, find_best_icon
 from utils.click.click import click, click_text
-from utils.keyboard.keyboard import keyevent
 
 def click_center(box, device_id):
     if not box: return
@@ -58,7 +57,7 @@ def handle_cultivation_cabin(device_id):
         click_center(res_collect_all, device_id)
         time.sleep(1)
         
-        keyevent("space", device_id=device_id)
+        click(960, 540, device_id=device_id)
         time.sleep(2)
         
         best_close = find_best_icon(["close", "close_2"], threshold=0.4, device_id=device_id)

@@ -13,16 +13,16 @@ def run_task(device_id="127.0.0.1:7555"):
     print("[领取商城信用点] 任务开始")
     
     if click("shop", device_id=device_id):
-        time.sleep(0.2)
+        time.sleep(2)
     
     if click_text("信用交易所", device_id=device_id):
-        time.sleep(0.2)
+        time.sleep(1)
     
     if click_text("收取信用", device_id=device_id):
-        time.sleep(0.2)
+        time.sleep(1)
 
         keyevent("space", device_id=device_id)
-        time.sleep(0.2)
+        time.sleep(1)
 
         task_config_path = os.path.join(BASE_DIR, "tasks", "task.json")
         try:
